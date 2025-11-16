@@ -1,5 +1,6 @@
 package com.example.project
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -12,6 +13,7 @@ class FavoritesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
+        window.statusBarColor = android.graphics.Color.WHITE
 
         setupButtons()
     }
@@ -21,9 +23,17 @@ class FavoritesActivity : AppCompatActivity() {
         val btnToFavorites: Button = findViewById(R.id.btn_to_favorites_screen)
 
         btnToMain.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            val options = ActivityOptions
+                .makeCustomAnimation(this, 0, 0)
+
+            startActivity(
+                Intent(this, MainActivity::class.java),
+                options.toBundle()
+            )
+
             finish()
         }
+
 
         btnToFavorites.setOnClickListener {
         }

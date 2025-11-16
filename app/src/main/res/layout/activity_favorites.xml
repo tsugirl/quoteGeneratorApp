@@ -3,39 +3,47 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    >
 
     <TextView
         android:id="@+id/screen_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:fontFamily="@font/inter"
         android:text="избранное"
+        android:textColor="@color/fantom_black"
         android:textSize="24sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="50dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_to_main_screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Новая цитата"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_to_favorites_screen"
         android:layout_margin="16dp"
-        app:layout_constraintHorizontal_chainStyle="packed" />
+        android:backgroundTint="@color/white"
+        android:text="Новая цитата"
+        android:textColor="@color/light_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_to_favorites_screen"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_to_favorites_screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Избранные цитаты"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_to_main_screen"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp"
         android:layout_marginStart="30dp"
-        android:layout_margin="16dp"/>
+        android:backgroundTint="@color/white"
+        android:text="В Избранное"
+        android:textColor="@color/fantom_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_to_main_screen" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
