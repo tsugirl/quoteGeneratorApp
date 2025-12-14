@@ -8,7 +8,8 @@
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp"
     app:cardCornerRadius="10dp"
-    app:cardElevation="4dp">
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textSize="13sp"
-            android:textColor="@color/light_gray"/>
+            android:textColor="@color/fantom_black"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,7 +44,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@android:drawable/ic_menu_share"/>
+                android:src="@drawable/share"/>
 
             <ImageButton
                 android:id="@+id/item_delete"
@@ -51,7 +52,7 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@android:drawable/ic_menu_delete"/>
+                android:src="@drawable/bin"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
