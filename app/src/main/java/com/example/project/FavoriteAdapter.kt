@@ -13,7 +13,7 @@ import com.example.project.model.Quote
 class FavoriteAdapter(
     private val context: Context,
     private val items: MutableList<Quote>,
-    private val onDelete: (Quote) -> Unit
+    private val onDelete: (Quote) -> Unit // каллбек при удалении цитаты
 ) : RecyclerView.Adapter<FavoriteAdapter.VH>() {
 
     inner class VH(view: View) : RecyclerView.ViewHolder(view) {
@@ -32,7 +32,7 @@ class FavoriteAdapter(
         val q = items[position]
         holder.text.text = q.text
         holder.author.text = q.author?.let { "— $it" } ?: ""
-        holder.share.setOnClickListener {
+        holder.share.setOnClickListener { // кнопка поделиться
             val send = Intent().apply {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TEXT, "\"${q.text}\" — ${q.author ?: "Unknown"}")
@@ -40,7 +40,7 @@ class FavoriteAdapter(
             }
             context.startActivity(Intent.createChooser(send, "Поделиться цитатой"))
         }
-        holder.delete.setOnClickListener {
+        holder.delete.setOnClickListener { // кнопка удалить
             val qdel = items[position]
             items.removeAt(position)
             notifyItemRemoved(position)
@@ -50,6 +50,7 @@ class FavoriteAdapter(
 
     override fun getItemCount(): Int = items.size
 
+    // добавление новой цитаты в адаптер, на будущее
     fun add(quote: Quote) {
         items.add(0, quote)
         notifyItemInserted(0)

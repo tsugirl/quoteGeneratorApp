@@ -19,27 +19,32 @@ class FavoritesActivity : AppCompatActivity() {
 
     private lateinit var recycler: RecyclerView
     private lateinit var adapter: FavoriteAdapter
-    private val items = mutableListOf<Quote>()
+    private val items = mutableListOf<Quote>() // список избранного
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
         window.statusBarColor = android.graphics.Color.WHITE
 
+        // recycler для списка объектов, хранящих цитаты
         recycler = findViewById(R.id.favorites_recycler)
         recycler.layoutManager = LinearLayoutManager(this)
+
+        // настройка адаптера
         adapter = FavoriteAdapter(this, items) { quote ->
             removeFromStorage(quote)
             Toast.makeText(this, "Удалено из избранного", Toast.LENGTH_SHORT).show()
         }
         recycler.adapter = adapter
 
+        // кнопки для перехода между экранами
         findViewById<Button>(R.id.btn_to_main_screen).setOnClickListener {
             val options = ActivityOptions.makeCustomAnimation(this, 0, 0)
             startActivity(Intent(this, MainActivity::class.java), options.toBundle())
             finish()
         }
 
+        // отключение возможности перехода с избранного на избранное
         findViewById<Button>(R.id.btn_to_favorites_screen).setOnClickListener {
 
         }
@@ -47,7 +52,7 @@ class FavoritesActivity : AppCompatActivity() {
         loadFromStorage()
     }
 
-    private fun loadFromStorage() {
+    private fun loadFromStorage() { // подгрузка цитат из SharedPreferences
         val prefs = getSharedPreferences(PREFS, Context.MODE_PRIVATE)
         val json = prefs.getString(KEY_FAVORITES, null)
         if (json != null) {
@@ -59,7 +64,7 @@ class FavoritesActivity : AppCompatActivity() {
         }
     }
 
-    private fun removeFromStorage(q: Quote) {
+    private fun removeFromStorage(q: Quote) { // удаление цитаты из SharedPreferences
         val prefs = getSharedPreferences(PREFS, Context.MODE_PRIVATE)
         val gson = Gson()
         val json = prefs.getString(KEY_FAVORITES, null)
@@ -71,6 +76,7 @@ class FavoritesActivity : AppCompatActivity() {
             prefs.edit().putString(KEY_FAVORITES, gson.toJson(list)).apply()
         }
 
+        // обновление локального и сетевого адаптера
         val idx = items.indexOfFirst { it.text == q.text }
         if (idx >= 0) {
             items.removeAt(idx)
